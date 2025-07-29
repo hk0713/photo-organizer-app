@@ -6,6 +6,15 @@ from tensorflow.keras.applications import ResNet50
 from tensorflow.keras.applications.resnet50 import preprocess_input, decode_predictions
 from tensorflow.keras.preprocessing import image
 import logging
+import ssl
+
+# Configure SSL to handle certificate issues on macOS
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
